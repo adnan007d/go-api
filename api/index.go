@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"go-api/initializers"
 	"go-api/routes"
 	"net/http"
 
@@ -20,7 +21,7 @@ func GoBitchGo(c *gin.Context) {
 func init() {
 	app = gin.New()
 
-	// initializers.LoadEnvVariables()
+	initializers.LoadEnvVariables()
 	// initializers.ConnectDB()
 
 	app.GET("/", GoBitchGo)
