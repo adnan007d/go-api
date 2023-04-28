@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"go-api/initializers"
 	"go-api/models"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -33,5 +35,11 @@ func CreateContact(c *gin.Context) {
 
 	contact := models.Contact{Name: body.Name, Email: body.Email, Message: body.Message}
 
+	tx := initializers.DB.Create(&contact)
+	if tx.Error != nil {
+		log.Fatal(tx.Error)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Something went wrong"})
+		return
+	}
 	c.JSON(http.StatusAccepted, contact)
 }
