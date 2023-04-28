@@ -12,12 +12,19 @@ var (
 	app *gin.Engine
 )
 
+func GoBitchGo(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": "GoBitchGo",
+	})
+}
+
 func init() {
 	app = gin.New()
 
 	initializers.LoadEnvVariables()
 	initializers.ConnectDB()
 
+	app.GET("/", GoBitchGo)
 	bitchRouter := app.Group("/api/bitch")
 	animeRouter := app.Group("/api/anime")
 	contactRouter := app.Group("/api/contact")
