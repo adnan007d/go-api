@@ -8,4 +8,5 @@ import (
 
 func ContactRouter(r *gin.RouterGroup) {
 	r.POST("/", controllers.ContactCreate)
+	r.GET("/", controllers.ContactList)
 }

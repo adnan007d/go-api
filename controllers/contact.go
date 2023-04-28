@@ -43,3 +43,14 @@ func ContactCreate(c *gin.Context) {
 	}
 	c.JSON(http.StatusAccepted, contact)
 }
+
+func ContactList(c *gin.Context) {
+	var contacts []models.Contact
+	tx := initializers.DB.Find(&contacts)
+	if tx.Error != nil {
+		log.Fatal(tx.Error)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Something went wrong"})
+		return
+	}
+	c.JSON(http.StatusOK, contacts)
+}
