@@ -22,7 +22,7 @@ func init() {
 	app = gin.New()
 
 	initializers.LoadEnvVariables()
-	// initializers.ConnectDB()
+	initializers.ConnectDB()
 
 	app.GET("/", GoBitchGo)
 	bitchRouter := app.Group("/api/bitch")
