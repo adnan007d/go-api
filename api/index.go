@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"go-api/initializers"
+	"go-api/routes"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -10,29 +12,18 @@ var (
 	app *gin.Engine
 )
 
-func BitchRoute(r *gin.RouterGroup) {
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "bitch",
-		})
-	})
-}
-
-func AnimeRoute(r *gin.RouterGroup) {
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "anime",
-		})
-	})
-}
-
 func init() {
 	app = gin.New()
 
+	initializers.LoadEnvVariables()
+	initializers.ConnectDB()
+
 	bitchRouter := app.Group("/api/bitch")
 	animeRouter := app.Group("/api/anime")
-	BitchRoute(bitchRouter)
-	AnimeRoute(animeRouter)
+	contactRouter := app.Group("/api/contact")
+	routes.BitchRoute(bitchRouter)
+	routes.AnimeRoute(animeRouter)
+	routes.ContactRouter(contactRouter)
 
 }
 
