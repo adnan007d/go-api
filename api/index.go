@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"go-api/routes"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -23,12 +24,12 @@ func init() {
 	// initializers.ConnectDB()
 
 	app.GET("/", GoBitchGo)
-	// bitchRouter := app.Group("/api/bitch")
-	// animeRouter := app.Group("/api/anime")
-	// contactRouter := app.Group("/api/contact")
-	// routes.BitchRoute(bitchRouter)
-	// routes.AnimeRoute(animeRouter)
-	// routes.ContactRouter(contactRouter)
+	bitchRouter := app.Group("/api/bitch")
+	animeRouter := app.Group("/api/anime")
+	contactRouter := app.Group("/api/contact")
+	routes.BitchRoute(bitchRouter)
+	routes.AnimeRoute(animeRouter)
+	routes.ContactRouter(contactRouter)
 
 }
 
