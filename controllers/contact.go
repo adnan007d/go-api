@@ -10,7 +10,7 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-func CreateContact(c *gin.Context) {
+func ContactCreate(c *gin.Context) {
 
 	var body struct {
 		Name    string `form:"name" json:"name" validate:"required"`

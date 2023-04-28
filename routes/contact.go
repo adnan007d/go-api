@@ -7,5 +7,5 @@ import (
 )
 
 func ContactRouter(r *gin.RouterGroup) {
-	r.POST("/", controllers.CreateContact)
+	r.POST("/", controllers.ContactCreate)
 }
