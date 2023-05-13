@@ -12,9 +12,9 @@ var (
 	app *gin.Engine
 )
 
-func GoBitchGo(c *gin.Context) {
+func Home(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"message": "GoBitchGo",
+		"message": "Nothing to see here, move along.",
 	})
 }
 
@@ -24,11 +24,10 @@ func init() {
 	initializers.LoadEnvVariables()
 	initializers.ConnectDB()
 
-	app.GET("/", GoBitchGo)
-	bitchRouter := app.Group("/api/bitch")
+	app.GET("/", Home)
 	animeRouter := app.Group("/api/anime")
 	contactRouter := app.Group("/api/contact")
-	routes.BitchRoute(bitchRouter)
+
 	routes.AnimeRoute(animeRouter)
 	routes.ContactRouter(contactRouter)
 
