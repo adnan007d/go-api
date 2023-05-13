@@ -24,12 +24,16 @@ func init() {
 	initializers.LoadEnvVariables()
 	initializers.ConnectDB()
 
+	app.MaxMultipartMemory = 3 << 20 // 3 MiB
+
 	app.GET("/", Home)
 	animeRouter := app.Group("/api/anime")
 	contactRouter := app.Group("/api/contact")
+	fileRouter := app.Group("/api/file")
 
 	routes.AnimeRoute(animeRouter)
 	routes.ContactRouter(contactRouter)
+	routes.FileRoute(fileRouter)
 
 }
 
